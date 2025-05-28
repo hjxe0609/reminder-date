@@ -1,0 +1,13 @@
+﻿﻿name = "reminder-system-api"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "REMINDERS_KV"
+id = "e4be4d023a37413c84aac50504d4680e"
+
+[triggers]
+crons = ["0 9 * * *"]
+
+[vars]
+RESEND_API_KEY = "re_bdGY1ohF_Fk8rPGnGkM6ArmvnDdSZL8ha"
