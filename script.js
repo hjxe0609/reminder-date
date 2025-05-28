@@ -1,4 +1,4 @@
-﻿const API_BASE = 'https://your-worker.your-subdomain.workers.dev';
+﻿const API_BASE = 'https://reminder-date.pages.dev/';
 
 class ReminderSystem {
     constructor() {
