@@ -8,6 +8,3 @@ id = "e4be4d023a37413c84aac50504d4680e"
 
 [triggers]
 crons = ["0 9 * * *"]
-
-[vars]
-RESEND_API_KEY = "re_bdGY1ohF_Fk8rPGnGkM6ArmvnDdSZL8ha"
