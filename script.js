@@ -1,4 +1,4 @@
-﻿const API_BASE = 'https://reminder-date.pages.dev/';
+﻿const API_BASE = 'https://reminder-system-api.morimiss.workers.dev/';
 
 class ReminderSystem {
     constructor() {
