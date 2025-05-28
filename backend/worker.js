@@ -24,17 +24,34 @@ export default {
                 });
             }
 
-            // 添加提醒
+            // 添加提醒的部分
             if (method === 'POST' && path === '/reminders') {
-                const reminder = await request.json();
-                const reminders = await env.REMINDERS_KV.get('reminders', 'json') || [];
+                console.log('Received POST request to /reminders');
                 
-                reminders.push(reminder);
-                await env.REMINDERS_KV.put('reminders', JSON.stringify(reminders));
-                
-                return new Response(JSON.stringify({ success: true }), {
-                    headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-                });
+                try {
+                    const reminder = await request.json();
+                    console.log('Parsed reminder data:', JSON.stringify(reminder));
+                    
+                    const reminders = await env.REMINDERS_KV.get('reminders', 'json') || [];
+                    console.log('Current reminders count:', reminders.length);
+                    
+                    reminders.push(reminder);
+                    await env.REMINDERS_KV.put('reminders', JSON.stringify(reminders));
+                    console.log('Successfully saved reminder to KV');
+                    
+                    return new Response(JSON.stringify({ success: true }), {
+                        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+                    });
+                } catch (error) {
+                    console.error('Error in POST /reminders:', error.message, error.stack);
+                    return new Response(JSON.stringify({ 
+                        error: 'Bad Request', 
+                        message: error.message 
+                    }), { 
+                        status: 400, 
+                        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+                    });
+                }
             }
 
             // 删除提醒
